@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
+gem 'heroku'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.beta1'
 
-group :development do
+group :development, :test do
 	gem 'sqlite3'
 end
 
