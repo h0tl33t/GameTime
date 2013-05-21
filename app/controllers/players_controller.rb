@@ -1,4 +1,4 @@
-class PlayerController < ApplicationController
+class PlayersController < ApplicationController
 	def new
 		@player = Player.new(player_params)
 	end
