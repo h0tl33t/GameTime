@@ -1,8 +1,8 @@
 <h3>Registered Players</h3>
 <ul>
-<%= @players.each do |player| %>
-	<li>Name:  <%= link_to player.name, player %></li>
-	<li>Alias: <%= player.alias %></li>
-	<li>Email: <%= player.email %></li></br>
+<% @players.each do |player| %>
+	<li><strong>Name: </strong><%= link_to player.name, player %></li>
+	<li><strong>Alias: </strong><%= player.alias %></li>
+	<li><strong>Email: </strong><%= player.email %></li></br>
 <% end %>
 </ul>
