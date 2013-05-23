@@ -1,7 +1,7 @@
 module ApplicationHelper
 	def title
 		base_title = 'GameTime'
-		if @title.empty?
+		unless @title
 			base_title
 		else
 			"#{base_title} - #{@title}"

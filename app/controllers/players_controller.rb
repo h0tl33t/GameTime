@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :set_player, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate, :only => [:index, :edit, :update, :destroy, :show]
+	before_action :correct_player, :only => [:show, :edit, :update]
 	
 	def index
 		@players = Player.all
@@ -19,6 +21,7 @@ class PlayersController < ApplicationController
 		@title = 'Create Player'
 		@player = Player.new(player_params)
 		if @player.save
+			sign_in(@player)
 			flash[:success] = 'Welcome to GameTime!'
 			redirect_to @player
 		else
@@ -45,8 +48,18 @@ class PlayersController < ApplicationController
 	end
 	
 	private
-		def set_user
-			@player = Player.find(params[:id])
+		def set_player
+			begin
+				@player = Player.find(params[:id])
+			rescue
+				redirect_to root_path, :notice => "Player profile could not be found."
+			end
+		end
+		
+		def correct_player
+			unless current_player?(@player)
+				redirect_to root_path, :notice => 'You are not authorized to view that page.'
+			end
 		end
 		
 		def player_params

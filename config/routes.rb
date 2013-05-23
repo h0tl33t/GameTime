@@ -6,6 +6,12 @@ GameTime::Application.routes.draw do
   root to: 'pages#home'
   
   resources :players
+  resources :sessions, only: [:new, :create, :destroy]
+  
+  get '/signup', to: 'players#new'
+  get '/signin', to: 'sessions#new'
+  get '/signout', to: 'sessions#destroy'
+  
   #get '/page/home' => 'page#home'
 
   # Example of regular route:

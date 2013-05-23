@@ -5,7 +5,6 @@
 	<li>Email: <%= @player.email %></li>
 	<table>
 		<td><%= link_to "Edit | ", edit_player_path(@player) %></td>
-		<td><%= link_to "Delete | ", @player, :method => :delete, :confirm => "You sure?", :title => "Delete #{@player.name}" %></td>
-		<td><%= link_to "All Players", players_path %></td>
+		<td><%= link_to "Delete", @player, :method => :delete, data: {confirm: "Are you sure you want to delete?"}, :title => "Delete #{@player.name}" %></td>
 	</table>
 </ul>
