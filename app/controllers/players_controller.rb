@@ -40,7 +40,7 @@ class PlayersController < ApplicationController
 
 	def destroy
 		@player.destroy
-		redirect_to players_path, :flash => { :success => "Player deleted." }
+		redirect_to root_path, :flash => { :success => "Player profile deleted." }
 	end
 	
 	def edit

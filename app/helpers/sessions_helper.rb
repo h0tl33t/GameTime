@@ -18,7 +18,7 @@ module SessionsHelper
 	end
 	
 	def signed_in?
-		!current_player.nil?
+		current_player
 	end
 	
 	def current_player?(player)
