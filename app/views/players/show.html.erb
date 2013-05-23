@@ -1,0 +1,9 @@
+<h3>Player</h3>
+<ul>
+	<li>Name:  <%= @player.name %></li>
+	<li>Alias: <%= @player.alias %></li>
+	<li>Email: <%= @player.email %></li>
+	<li><%= link_to "Edit", edit_player_path(@player) %></li>
+	<li><%= link_to "Delete", @player, :method => :delete, :confirm => "You sure?", :title => "Delete #{@player.name}" %></li>
+	<li><%= link_to "All Players", players_path %></li>
+</ul>

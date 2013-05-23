@@ -3,7 +3,7 @@ GameTime::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root_to: 'pages#home'
+  root to: 'pages#home'
   
   resources :players
   #get '/page/home' => 'page#home'
