@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
 	before_action :correct_player, :only => [:show, :edit, :update]
 	
 	def index
-		@players = Player.all
+		set_players
 		@title = 'All Players'
 	end
 	
@@ -47,10 +47,6 @@ class PlayersController < ApplicationController
 		@title = "Edit Player Info"
 	end
 	
-	def players
-		@players
-	end
-	
 	private
 		def set_player
 			begin
@@ -58,6 +54,10 @@ class PlayersController < ApplicationController
 			rescue
 				redirect_to root_path, :notice => "Player profile could not be found."
 			end
+		end
+		
+		def set_players
+			@players = Player.all
 		end
 		
 		def correct_player
