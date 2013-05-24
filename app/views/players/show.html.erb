@@ -1,4 +1,4 @@
-<h3>Player</h3>
+<h3><%= "Admin-Level " if @player.admin? %>Player</h3>
 <ul>
 	<li>Name:  <%= @player.name %></li>
 	<li>Alias: <%= @player.alias %></li>
