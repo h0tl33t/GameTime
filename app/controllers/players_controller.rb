@@ -47,6 +47,10 @@ class PlayersController < ApplicationController
 		@title = "Edit Player Info"
 	end
 	
+	def players
+		@players
+	end
+	
 	private
 		def set_player
 			begin
