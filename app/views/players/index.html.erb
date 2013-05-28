@@ -3,6 +3,9 @@
 <% @players.each do |player| %>
 	<li><strong>Name: </strong><%= player.name%></li>
 	<li><strong>Alias: </strong><%= player.alias %></li>
-	<li><strong>Email: </strong><%= player.email %></li></br>
+	<% if current_player.admin? %>
+		<li><strong>Email: </strong><%= player.email %></li>
+	<% end %>
+	</br>
 <% end %>
 </ul>
