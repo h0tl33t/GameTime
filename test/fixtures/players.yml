@@ -9,6 +9,8 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

@@ -6,6 +6,7 @@ GameTime::Application.routes.draw do
   root to: 'pages#home'
   
   resources :players
+  resources :games
   resources :sessions, only: [:new, :create, :destroy]
   
   get '/signup', to: 'players#new'

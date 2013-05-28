@@ -1,0 +1,10 @@
+<h3>Games</h3>
+<%= "No games found." if @games.empty? %>
+<ul>
+<% @games.each do |game| %>
+	<li><strong>Name: </strong><%= link_to game.name, game%></li>
+	<li><strong>Platform: </strong><%= game.platform %></li>
+	<li><strong>Players Required: </strong><%= game.players_required %></li></br>
+<% end %>
+</ul>
+<%= link_to "Add Game", new_game_path, class: "btn btn-large btn-primary" %>

@@ -7,6 +7,9 @@
 					<li><%= link_to "Home", root_path %></li>
 					<% if signed_in? %>
 						<li><%= link_to "Players", players_path %></li>
+						<% if current_player.admin? %>
+							<li><%= link_to "Games", games_path %></li>
+						<% end %>
 						<li><%= link_to "My Profile", current_player %></li>
 						<li><%= link_to "Sign Out", signout_path %></li>
 					<% else %>

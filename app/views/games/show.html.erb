@@ -1,0 +1,10 @@
+<h3>Game</h3>
+<ul>
+	<li><strong>Name: </strong><%= @game.name%></li>
+	<li><strong>Platform: </strong><%= @game.platform %></li>
+	<li><strong>Players Required: </strong><%= @game.players_required %></li>
+	<table>
+		<td><%= link_to "Edit | ", edit_game_path(@game) %></td>
+		<td><%= link_to "Delete", @game, :method => :delete, data: {confirm: "Are you sure you want to delete?"}, :title => "Delete #{@game.name}" %></td>
+	</table>
+</ul>
