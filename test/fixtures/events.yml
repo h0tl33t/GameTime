@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  start_at   :datetime
+#  end_at     :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#  game_id    :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start_at: 2013-05-28 16:22:18
+  end_at: 2013-05-28 16:22:18
+
+two:
+  name: MyString
+  start_at: 2013-05-28 16:22:18
+  end_at: 2013-05-28 16:22:18

@@ -1,4 +1,7 @@
 GameTime::Application.routes.draw do
+  
+  resources :events
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,11 +10,13 @@ GameTime::Application.routes.draw do
   
   resources :players
   resources :games
+  resources :events
   resources :sessions, only: [:new, :create, :destroy]
   
   get '/signup', to: 'players#new'
   get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'
+  get '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   
   #get '/page/home' => 'page#home'
 

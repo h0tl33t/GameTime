@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
 			flash[:success] = "Successfully logged in as #{player.name} (#{player.alias})."
 			redirect_to player
 		else
-			flash.now[:error] = 'Not a valid email/password combination.'
-			render 'new'
+			flash[:error] = 'Not a valid email/password combination.'
+			redirect_to root_path
 		end
 	end
 	

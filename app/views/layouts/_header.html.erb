@@ -1,22 +1,31 @@
 <header class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<%= link_to "GameTime", root_path, id: "logo" %>
-			<nav>
-				<ul class="nav pull-right">
-					<li><%= link_to "Home", root_path %></li>
+			<a class="brand" href="<%= root_path %>">GameTime</a>
+			<div id="main-menu" class="nav-collapse collapse">
+				<ul id="main-menu-left", class="nav">
 					<% if signed_in? %>
 						<li><%= link_to "Players", players_path %></li>
+						<li><%= link_to "Games", games_path %></li>
 						<% if current_player.admin? %>
-							<li><%= link_to "Games", games_path %></li>
+							<li><%= link_to "Calendar", calendar_path %></li>
+							<li><%= link_to "Events", events_path %></li>
 						<% end %>
+					<% end %>
+				</ul>
+				<ul id="main-menu-right" class="nav pull-right">
+					<% if signed_in? %>
 						<li><%= link_to "My Profile", current_player %></li>
 						<li><%= link_to "Sign Out", signout_path %></li>
 					<% else %>
-						<li><%= link_to "Sign In", signin_path %></li>
+						<%= form_for(:session, url: sessions_path) do |f| %>
+							<%= f.email_field :email, placeholder: "Email", class: "input" %>
+							<%= f.password_field :password, placeholder: "Password", class: "input" %>
+							<%= f.submit "Sign in", class: "btn" %>
+						<% end %>
 					<% end %>
 				</ul>
-			</nav>
+			</div>
 		</div>
 	</div>
 </header>

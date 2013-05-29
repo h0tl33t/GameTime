@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 	before_action :set_game, only: [:show, :edit, :update, :destroy]
-	before_action :check_admin, :only => [:index, :edit, :update, :destroy, :show]
+	before_action :check_admin, :only => [:new, :create, :edit, :update, :destroy]
 	
 	def index
 		set_games

@@ -1,11 +1,25 @@
 <h3>Registered Players</h3>
-<ul>
-<% @players.each do |player| %>
-	<li><strong>Name: </strong><%= player.name%></li>
-	<li><strong>Alias: </strong><%= player.alias %></li>
-	<% if current_player.admin? %>
-		<li><strong>Email: </strong><%= player.email %></li>
-	<% end %>
-	</br>
-<% end %>
-</ul>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Alias</th>
+	  <% if current_player.admin? %>
+		<th>Email</th>
+	  <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+    <tr>
+      <td><%= player.name %></td>
+      <td><%= player.alias %></td>
+	  <% if current_player.admin? %>
+		<td><%= player.email %></td>
+	  <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,8 +1,16 @@
 <h1>Edit Game</h1>
 
 <%= form_for(@game) do |f| %>
-  <%= render "fields", :f => f %>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :platform %>
+  <%= f.text_field :platform %>
+  <br>
+  <%= f.label :players_required %>
+  <%= f.text_field :players_required %>
+  <br>
+  <%= f.submit "Update", class: "btn" %>
 <% end %>
+
+  

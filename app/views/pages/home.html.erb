@@ -1,11 +1,11 @@
-<div class="center hero-unit">
+<header id="overview" class="jumbotron subhead">
 	<h1>GameTime</h1>
-	<h2>Connecting players with shared availability to the multiplayer games they want to play.</h2>
+	<p class="lead">Connecting players with shared availability to the multiplayer games they want to play.</p>
 	<% if signed_in? %>
-		<h3>You are signed in as
-			<%= "#{current_player.name} (#{current_player.alias})." %>
-		</h3>
+		<div class="alert alert-info">
+			You are signed in as <%= "#{current_player.name} (#{current_player.alias})." %>
+		</div>
 	<% else %>
-		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large" %>
 	<% end %>
-</div>
+</header>
