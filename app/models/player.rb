@@ -14,6 +14,8 @@
 #
 
 class Player < ActiveRecord::Base
+	has_many :availabilities
+		
 	has_secure_password
 	
 	before_save {|player| player.email.downcase!}

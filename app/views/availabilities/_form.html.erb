@@ -1,0 +1,22 @@
+<%= form_for(@availability) do |f| %>
+  <% if @availability.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
+
+      <ul>
+      <% @availability.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.label :start_at %>
+    <%= f.datetime_select :start_at %>
+	<br>
+    <%= f.label :end_at %>
+    <%= f.datetime_select :end_at %>
+	<br>
+	<%= f.collection_select :game_ids, Game.all, :id, :name %>
+	<br>
+    <%= f.submit "Create Availability", class: "btn" %>
+<% end %>

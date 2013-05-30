@@ -1,9 +1,8 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: availabilities
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
 #  start_at   :datetime
 #  end_at     :datetime
 #  created_at :datetime
@@ -13,11 +12,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  start_at: 2013-05-28 16:22:18
-  end_at: 2013-05-28 16:22:18
+  start_at: 2013-05-30 10:29:01
+  end_at: 2013-05-30 10:29:01
 
 two:
-  name: MyString
-  start_at: 2013-05-28 16:22:18
-  end_at: 2013-05-28 16:22:18
+  start_at: 2013-05-30 10:29:01
+  end_at: 2013-05-30 10:29:01
