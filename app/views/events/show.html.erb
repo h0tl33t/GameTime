@@ -1,20 +1,26 @@
-<p id="notice"><%= notice %></p>
+<h3><%= "#{@event.name} (#{@event.game.name})" %></h3>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Start At</th>
+      <th>End At</th>
+	  <th>Game</th>
+	  <th>Players</th>
+	  <th></th>
+	  <th></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+  <tbody>
+    <tr>
+      <td><%= @event.start_at %></td>
+      <td><%= @event.end_at %></td>
+	  <td><%= @event.game.name %>
+	  <td><%= current_player.alias %></td>
+      <td><%= link_to "Edit", edit_event_path(@event) %></td>
+	  <td><%= link_to "Delete", @event, :method => :delete, data: {confirm: "Are you sure you want to delete?"}%></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Start at:</strong>
-  <%= @event.start_at %>
-</p>
-
-<p>
-  <strong>End at:</strong>
-  <%= @event.end_at %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', calendar_path %>
+<%= link_to "Back", calendar_path, class: "btn"%>

@@ -19,9 +19,9 @@ module CalendarHelper
     calendar event_calendar_opts do |args|
       event = args[:event]
 	  if event.class == Event
-		%(<a href="/events/#{event.id}" title="#{h(event.name)}">#{h(event.name)}</a>)
+		%(<a href="/events/#{event.id}" title="#{h(event.name)}">#{h(event.name)} (#{event.game.name})</a>)
 	  elsif event.class == Availability
-		%(<a href="/availabilities/#{event.id}">Availability</a>)
+		%(<a href="/availabilities/#{event.id}">Availability (#{(event.games.map {|g| g.name}).join(",")})</a>)
 	  end
     end
   end

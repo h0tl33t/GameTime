@@ -10,8 +10,11 @@
       </ul>
     </div>
   <% end %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br>
+    <%= f.label "Game" %>
+    <%= f.collection_select :game_id, Game.all, :id, :name %>
 	<br>
     <%= f.label :start_at %>
     <%= f.datetime_select :start_at %>
