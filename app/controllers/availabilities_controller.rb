@@ -45,6 +45,6 @@ class AvailabilitiesController < ApplicationController
     end
 
     def availability_params
-      params.require(:availability).permit(:start_at, :end_at, :game_ids)
+      params.require(:availability).permit(:start_at, :end_at, :game_ids => [])
     end
 end

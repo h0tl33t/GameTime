@@ -17,7 +17,7 @@
     <%= f.datetime_select :end_at %>
 	<br>
 	<%= f.label "Select Game(s) for this Availability Time Slot:" %>
-	<%= f.collection_select :game_ids, Game.all, :id, :name %>
+	<%= f.collection_select :game_ids, Game.all, :id, :name, {}, {multiple: "multiple"} %>
 	<br>
     <%= f.submit "Create Availability", class: "btn" %>
 <% end %>

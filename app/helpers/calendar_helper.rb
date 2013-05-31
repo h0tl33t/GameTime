@@ -21,7 +21,7 @@ module CalendarHelper
 	  if event.class == Event
 		%(<a href="/events/#{event.id}" title="#{h(event.name)}">#{h(event.name)} (#{event.game.name})</a>)
 	  elsif event.class == Availability
-		%(<a href="/availabilities/#{event.id}">Availability (#{(event.games.map {|g| g.name}).join(",")})</a>)
+		%(<a href="/availabilities/#{event.id}">Availability (#{(event.games.map {|g| g.name}).join(", ")})</a>)
 	  end
     end
   end

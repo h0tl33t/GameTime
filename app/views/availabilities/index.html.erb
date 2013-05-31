@@ -15,9 +15,9 @@
   <tbody>
     <% @availabilities.each do |availability| %>
     <tr>
-      <td><%= availability.start_at %></td>
-      <td><%= availability.end_at %></td>
-	  <td><%= (availability.games.map {|game| game.name}).join(",") %></td>
+	  <td onclick="location.href='<%= calendar_path %>'"><%= availability.start_at %></td>
+	  <td onclick="location.href='<%= calendar_path %>'"><%= availability.end_at %></td>
+	  <td><%= (availability.games.map {|game| game.name}).join(", ") %></td>
       <td><%= link_to "Show", availability %></td>
       <td><%= link_to "Edit", edit_availability_path(availability) %></td>
       <td><%= link_to "Delete", availability, method: :delete, data: { confirm: "Are you sure?" } %></td>

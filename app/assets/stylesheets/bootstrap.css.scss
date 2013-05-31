@@ -1097,7 +1097,8 @@ input[type="color"],
   margin-bottom: 10.5px;
   font-size: 14px;
   line-height: 21px;
-  color: #52575c;
+  /*color: #52575c;*/
+  color: gray !important;
   vertical-align: middle;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -1215,10 +1216,12 @@ select {
   width: 100px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
+  color: gray;
 }
 
 select[multiple],
 select[size] {
+  width: 280px;
   height: auto;
 }
 

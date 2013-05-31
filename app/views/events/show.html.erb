@@ -13,8 +13,8 @@
 
   <tbody>
     <tr>
-      <td><%= @event.start_at %></td>
-      <td><%= @event.end_at %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @event.start_at %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @event.end_at %></td>
 	  <td><%= @event.game.name %>
 	  <td><%= current_player.alias %></td>
       <td><%= link_to "Edit", edit_event_path(@event) %></td>
