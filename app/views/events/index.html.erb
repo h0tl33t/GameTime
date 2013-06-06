@@ -7,6 +7,7 @@
       <th>Start At</th>
       <th>End At</th>
 	  <th>Game</th>
+	  <th>Players</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +21,7 @@
       <td onclick="location.href='<%= calendar_path %>'"><%= event.start_at %></td>
       <td onclick="location.href='<%= calendar_path %>'"><%= event.end_at %></td>
 	  <td><%= event.game.name %></td>
+	  <td><%= event.players.map {|player| "#{player.name} (#{player.alias})"}.join(", ") %>
       <td><%= link_to "Show", event %></td>
       <td><%= link_to "Edit", edit_event_path(event) %></td>
       <td><%= link_to "Delete", event, method: :delete, data: { confirm: "Are you sure?" } %></td>

@@ -16,7 +16,7 @@
       <td onclick="location.href='<%= calendar_path %>'"><%= @event.start_at %></td>
       <td onclick="location.href='<%= calendar_path %>'"><%= @event.end_at %></td>
 	  <td><%= @event.game.name %>
-	  <td><%= current_player.alias %></td>
+	  <td><%= @event.players.map {|player| "#{player.name} (#{player.alias})"}.join(", ") %></td>
       <td><%= link_to "Edit", edit_event_path(@event) %></td>
 	  <td><%= link_to "Delete", @event, :method => :delete, data: {confirm: "Are you sure you want to delete?"}%></td>
     </tr>

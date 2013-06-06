@@ -1,20 +1,25 @@
 <%= form_for(@availability) do |f| %>
   <% if @availability.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h2>
-
-      <ul>
-      <% @availability.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+	<div class="alert alert-error">
+		<div id="error_explanation">
+			<h3><%= pluralize(@availability.errors.count, "error") %> prohibited this availability from being saved:</h3>
+			<ul>
+			<% @availability.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
   <% end %>
     <%= f.label :start_at %>
-    <%= f.datetime_select :start_at %>
+    <!--<%= f.datetime_select :start_at %>-->
+	<!--<%= f.datetime_select(:start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone(@timezone), :minute_step => 30) %>-->
+	<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
 	<br>
     <%= f.label :end_at %>
-    <%= f.datetime_select :end_at %>
+    <!--<%= f.datetime_select :end_at %>-->
+	<!--<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone(@timezone), :minute_step => 30 %>-->
+	<%= f.datetime_select :end_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
 	<br>
 	<%= f.label "Select Game(s) for this Availability Time Slot:" %>
 	<%= f.collection_select :game_ids, Game.all, :id, :name, {}, {multiple: "multiple"} %>

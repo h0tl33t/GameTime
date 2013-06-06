@@ -15,6 +15,7 @@
 
 class Player < ActiveRecord::Base
 	has_many :availabilities
+	has_and_belongs_to_many :events
 		
 	has_secure_password
 	
