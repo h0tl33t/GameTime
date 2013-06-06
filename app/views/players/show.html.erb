@@ -21,3 +21,49 @@
     </tr>
   </tbody>
 </table>
+<br>
+<h3>Friends</h3>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Alias</th>
+	  <th>Email</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+	<% @player.friendships.each do |friendship| %>
+    <tr>
+      <td><%= friendship.friend.name %></td>
+      <td><%= friendship.friend.alias %></td>
+	  <td><%= friendship.friend.email %></td>
+	  <td><%= link_to "Remove Friend", friendship, :method => :delete, data: {confirm: "Are you sure you want to remove this friend?"}, :title => "Remove Friend", class: "btn btn-small"%></td>
+    </tr>
+	<% end %>
+  </tbody>
+</table>
+<br>
+<h3>Pending Friends</h3>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Alias</th>
+	  <th>Email</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+	<% @player.mutual_friends.each do |friend| %>
+    <tr>
+      <td><%= friend.name %></td>
+      <td><%= friend.alias %></td>
+	  <td><%= friend.email %></td>
+	  <td><%= link_to "Accept", @player, class: "btn btn-small" %> <%= link_to "Deny", @player, class: "btn btn-small" %></td>
+    </tr>
+	<% end %>
+  </tbody>
+</table>

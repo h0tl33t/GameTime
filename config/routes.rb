@@ -1,12 +1,20 @@
 GameTime::Application.routes.draw do
 
+  resources :friendships
+
+  get "friendships/create"
+  get "friendships/destroy"
+  get "friendship/create"
+  get "friendship/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root to: 'pages#home'
   
-  resources :players
+  resources :players do
+	resources :friends
+  end
   resources :games
   resources :events
   resources :availabilities

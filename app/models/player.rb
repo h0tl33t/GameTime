@@ -16,6 +16,10 @@
 class Player < ActiveRecord::Base
 	has_many :availabilities
 	has_and_belongs_to_many :events
+	has_many :friendships
+	has_many :friends, through: :friendships
+	has_many :mutual_friendships, class_name: "Friendship", foreign_key: "friend_id"
+	has_many :mutual_friends, through: :mutual_friendships, source: :player
 		
 	has_secure_password
 	

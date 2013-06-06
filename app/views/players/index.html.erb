@@ -8,6 +8,7 @@
 	  <% if current_player.admin? %>
 		<th>Email</th>
 	  <% end %>
+	  <th></th>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
 	  <% if current_player.admin? %>
 		<td><%= player.email %></td>
 	  <% end %>
+	  <td><%= link_to "Add Friend", friendships_path(:friend_id => player), method: :post, class: "btn btn-small"%></td>
     </tr>
     <% end %>
   </tbody>

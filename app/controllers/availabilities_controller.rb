@@ -55,20 +55,16 @@ class AvailabilitiesController < ApplicationController
 		availabilities.sort_by! {|availability| availability.duration}
 		#shared_availability = determine_baseline_availability(availabilities)
 		
-		while availabilities.size > 1
-			matched_players = []
-			games = []
+		while availabilities.size > 1 #Iterate through all active availabilities as sorted by smallest-to-biggest duration, finding overlaps between each of them.
 			shared_availability = availabilities.first #Set initial baseline.
+			games = shared_availability.games #Need to also baseline the games we'll be looking for for this match iteration.
+			matched_players = [shared_availability.player]
 			availabilities.each_with_index do |availability, index|
 				overlap_found, shared_availability = availability.find_overlap(shared_availability)
-				if overlap_found
-					matched_players << availability.player #Add player for current availability
-					matched_players << availabilities[index-1].player #Since match was found with last availability, add that player as well.
-					games << availability.games
-				end
+				matched_players << availability.player if overlap_found
 			end
-			unless matched_players.empty? and games.empty?
-				matched_players.uniq!
+			matched_players.uniq!
+			if matched_players.size > 0
 				games.flatten!
 				#Currently grabs the most frequently occuring game during the matching.
 				frequency = games.inject(Hash.new(0)) do |hash, game|
@@ -78,7 +74,7 @@ class AvailabilitiesController < ApplicationController
 				matched_game = games.sort_by { |game| frequency[game] }.last
 				tentative_events << {availability: shared_availability, game: matched_game, players: matched_players}
 			end
-			availabilities.delete_at(0)
+			availabilities.delete_at(0) #Delete currently smallest as it has been compared against all others, so that the next iteration will compare the new smallest availability.
 		end
 		#return trim_overlapping_shared_availabilities(tentative_events)
 		return tentative_events
