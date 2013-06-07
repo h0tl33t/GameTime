@@ -5,9 +5,16 @@ class CalendarController < ApplicationController
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
 
     @shown_month = Date.civil(@year, @month)
-
-    @event_strips = current_player.events.event_strips_for_month(@shown_month)
-	@event_strips.concat(current_player.availabilities.event_strips_for_month(@shown_month))
+	
+	my_events = current_player.events.event_strips_for_month(@shown_month)
+	my_availabilities = current_player.availabilities.event_strips_for_month(@shown_month)
+	
+	friends_availabilities = []
+	current_player.friendships.mutual.each do |friendship|
+		friends_availabilities.concat(friendship.friend.availabilities.event_strips_for_month(@shown_month))
+	end
+	
+    @event_strips = my_events + my_availabilities + friends_availabilities
   end
   
 end

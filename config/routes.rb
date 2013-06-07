@@ -16,12 +16,14 @@ GameTime::Application.routes.draw do
   
   resources :players do
 	resources :friends
+	resources :availabilities
   end
   resources :games
   resources :events
-  resources :availabilities
+  
   resources :sessions, only: [:new, :create, :destroy]
   
+  get '/join', to: 'events#create_from_join'
   get '/signup', to: 'players#new'
   get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'

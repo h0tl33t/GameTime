@@ -1,4 +1,4 @@
-<%= form_for(@availability) do |f| %>
+<%= form_for(@availability, url: player_availability_path(@availability.player, @availability)) do |f| %>
   <% if @availability.errors.any? %>
 	<div class="alert alert-error">
 		<div id="error_explanation">
@@ -12,13 +12,9 @@
 	</div>
   <% end %>
     <%= f.label :start_at %>
-    <!--<%= f.datetime_select :start_at %>-->
-	<!--<%= f.datetime_select(:start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone(@timezone), :minute_step => 30) %>-->
 	<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
 	<br>
     <%= f.label :end_at %>
-    <!--<%= f.datetime_select :end_at %>-->
-	<!--<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone(@timezone), :minute_step => 30 %>-->
 	<%= f.datetime_select :end_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
 	<br>
 	<%= f.label "Select Game(s) for this Availability Time Slot:" %>

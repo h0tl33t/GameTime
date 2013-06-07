@@ -48,6 +48,14 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  	def create_from_join
+		availability = Availability.find(params[:availability])
+		players = params[:players].map{|player_id| Player.find(player_id)}
+		@event = Event.create(name: 'Join Up Event Test', start_at: availability.start_at, end_at: availability.end_at, game: availability.games.first)
+		@event.players = players
+		redirect_to events_path, notice: 'Successfully joined up and started a GameTime Event!'
+	end
 
   private
     def set_event
@@ -55,6 +63,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :game_id, :start_at, :end_at)
+      params.require(:event).permit(:name, :game_id, :start_at, :end_at, :player_ids)
     end
 end

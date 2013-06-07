@@ -33,6 +33,10 @@ class Player < ActiveRecord::Base
 	validates :password, presence: true, length: {minimum: 6}
 	validates :password_confirmation, presence: true
 	
+	def mutual_friends_with?(other)
+		self.friendships.mutual.select {|friendship| friendship.friend = other}.size > 0
+	end
+	
 	private
 		def create_remember_token
 			self.remember_token = SecureRandom.urlsafe_base64

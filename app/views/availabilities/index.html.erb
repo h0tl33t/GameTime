@@ -18,16 +18,12 @@
 	  <td onclick="location.href='<%= calendar_path %>'"><%= availability.start_at %></td>
 	  <td onclick="location.href='<%= calendar_path %>'"><%= availability.end_at %></td>
 	  <td><%= (availability.games.map {|game| game.name}).join(", ") %></td>
-      <td><%= link_to "Show", availability %></td>
-      <td><%= link_to "Edit", edit_availability_path(availability) %></td>
-      <td><%= link_to "Delete", availability, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      <td><%= link_to "Show", player_availability_path(current_player, availability), class: "btn btn-small" %></td>
+      <td><%= link_to "Edit", edit_player_availability_path(current_player, availability), class: "btn btn-small" %></td>
+      <td><%= link_to "Delete", player_availability_path(current_player, availability), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-small" %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<!--
-<div class="well">
-	<%= @events %>
-</div>
--->
-<%= link_to "New Availability", new_availability_path, class: "btn" %>
+
+<%= link_to "New Availability", new_player_availability_path, class: "btn" %>
