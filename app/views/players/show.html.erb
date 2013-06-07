@@ -29,6 +29,7 @@
       <th>Name</th>
       <th>Alias</th>
 	  <th>Email</th>
+	  <th>Friendship Status </th>
 	  <th></th>
     </tr>
   </thead>
@@ -39,13 +40,20 @@
       <td><%= friendship.friend.name %></td>
       <td><%= friendship.friend.alias %></td>
 	  <td><%= friendship.friend.email %></td>
+	  <td>
+		<% if friendship.mutual %>
+			Mutual
+		<% else %>
+			<%= friendship.pending ? "Pending" : "Denied" %>
+		<% end %>
+	  </td>
 	  <td><%= link_to "Remove Friend", friendship, :method => :delete, data: {confirm: "Are you sure you want to remove this friend?"}, :title => "Remove Friend", class: "btn btn-small"%></td>
     </tr>
 	<% end %>
   </tbody>
 </table>
 <br>
-<h3>Pending Friends</h3>
+<h3>Pending Friendship Requests</h3>
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
@@ -57,12 +65,15 @@
   </thead>
 
   <tbody>
-	<% @player.mutual_friends.each do |friend| %>
+	<% @player.mutual_friendships.pending.each do |pending_friendship| %>
     <tr>
-      <td><%= friend.name %></td>
-      <td><%= friend.alias %></td>
-	  <td><%= friend.email %></td>
-	  <td><%= link_to "Accept", @player, class: "btn btn-small" %> <%= link_to "Deny", @player, class: "btn btn-small" %></td>
+      <td><%= pending_friendship.player.name %></td>
+      <td><%= pending_friendship.player.alias %></td>
+	  <td><%= pending_friendship.player.email %></td>
+	  <td><%= link_to "Accept", friendships_path(:friend_id => pending_friendship.player), method: :post, class: "btn btn-small" %>
+		  <%= link_to "Deny", pending_friendship,
+				method: :patch, data: {confirm: "Are you sure you want to deny this friendship request?"},
+				:title => "Deny Friend Request", class: "btn btn-small" %></td>
     </tr>
 	<% end %>
   </tbody>

@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
 	before_action :set_availability, only: [:show, :edit, :update, :destroy]
-	after_action :match_availability, only: [:create, :update]
+	#after_action :match_availability, only: [:create, :update]
 
 	def index
 		@availabilities = current_player.availabilities

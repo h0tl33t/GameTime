@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130606191751) do
+ActiveRecord::Schema.define(version: 20130607133019) do
 
   create_table "availabilities", force: true do |t|
     t.datetime "start_at"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20130606191751) do
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "pending",    default: true
+    t.boolean  "mutual",     default: false
   end
 
   create_table "games", force: true do |t|

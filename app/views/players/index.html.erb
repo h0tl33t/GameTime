@@ -20,7 +20,14 @@
 	  <% if current_player.admin? %>
 		<td><%= player.email %></td>
 	  <% end %>
-	  <td><%= link_to "Add Friend", friendships_path(:friend_id => player), method: :post, class: "btn btn-small"%></td>
+	  <td>
+		<% if current_player.friends.include?(player) %>
+			<%= link_to "Remove Friend", current_player.friendships.select{|friendship| friendship.friend = player}.first, method: :delete, data: {confirm: "Are you sure you want to remove this friend?"}, :title => "Remove Friend", class: "btn btn-small"%>
+		<% elsif current_player == player %>
+		<% else %>
+			<%= link_to "Add Friend", friendships_path(:friend_id => player), method: :post, class: "btn btn-small"%>
+		<% end %>
+	  </td>
     </tr>
     <% end %>
   </tbody>
