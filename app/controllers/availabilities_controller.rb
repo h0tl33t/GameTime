@@ -22,7 +22,7 @@ class AvailabilitiesController < ApplicationController
 		@availability.player = current_player
      
 		if @availability.save
-			redirect_to @availability, notice: 'Availability was successfully created.'
+			redirect_to player_availability_path(current_player, @availability), notice: 'Availability was successfully created.'
 		else
 			render 'new'
 		end
@@ -38,7 +38,7 @@ class AvailabilitiesController < ApplicationController
 
 	def destroy
 		@availability.destroy
-		redirect_to availabilities_url
+		redirect_to player_availabilities_path
 	end
 
   private
@@ -51,7 +51,8 @@ class AvailabilitiesController < ApplicationController
     end
 	
 	def verify_friends
-		unless @availability.player.mutual_friends_with?(current_player)
+		
+		unless @availability.player.mutual_friends_with?(current_player) or @availability.player == current_player
 			redirect_to root_path, notice: "You must be mutual friends to see another player's availabilities."
 		end
 	end

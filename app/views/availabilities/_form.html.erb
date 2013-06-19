@@ -1,4 +1,4 @@
-<%= form_for(@availability, url: player_availability_path(@availability.player, @availability)) do |f| %>
+<%= form_for @availability, url: player_availability_path(current_player, @availability) do |f| %>
   <% if @availability.errors.any? %>
 	<div class="alert alert-error">
 		<div id="error_explanation">
