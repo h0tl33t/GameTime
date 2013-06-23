@@ -30,7 +30,7 @@ class AvailabilitiesController < ApplicationController
   
 	def update
 		if @availability.update(availability_params)
-			redirect_to @availability, notice: 'Availability was successfully updated.'
+			redirect_to player_availability_path(current_player, @availability), notice: 'Availability was successfully updated.'
 		else
 			render 'edit'
 		end
