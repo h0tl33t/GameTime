@@ -14,8 +14,8 @@
 
   <tbody>
     <tr>
-      <td onclick="location.href='<%= calendar_path %>'"><%= @availability.start_at %></td>
-      <td onclick="location.href='<%= calendar_path %>'"><%= @availability.end_at %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @availability.start_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)") %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @availability.end_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)") %></td>
 	  <td><%= (@availability.games.map {|game| game.name}).join(", ") %>
 	  <td><%= "#{@availability.player.name} (#{@availability.player.alias})" %></td>
 	  <% if @availability.player == current_player %>

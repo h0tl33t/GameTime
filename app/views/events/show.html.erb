@@ -13,12 +13,12 @@
 
   <tbody>
     <tr>
-      <td onclick="location.href='<%= calendar_path %>'"><%= @event.start_at %></td>
-      <td onclick="location.href='<%= calendar_path %>'"><%= @event.end_at %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @event.start_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)") %></td>
+      <td onclick="location.href='<%= calendar_path %>'"><%= @event.end_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)") %></td>
 	  <td><%= @event.game.name %>
 	  <td><%= @event.players.map {|player| "#{player.name} (#{player.alias})"}.join(", ") %></td>
-      <td><%= link_to "Edit", edit_event_path(@event) %></td>
-	  <td><%= link_to "Delete", @event, :method => :delete, data: {confirm: "Are you sure you want to delete?"}%></td>
+      <td><%= link_to "Edit", edit_event_path(@event), class: "btn btn-small"%></td>
+	  <td><%= link_to "Delete", @event, :method => :delete, data: {confirm: "Are you sure you want to delete?"}, class: "btn btn-small" %></td>
     </tr>
   </tbody>
 </table>

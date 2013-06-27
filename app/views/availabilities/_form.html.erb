@@ -12,10 +12,10 @@
 	</div>
   <% end %>
     <%= f.label :start_at %>
-	<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
+	<%= f.datetime_select :start_at, :start_year => 2013, :ampm => true, :default => 1.hour.from_now.in_time_zone, :minute_step => 30 %>
 	<br>
     <%= f.label :end_at %>
-	<%= f.datetime_select :end_at, :start_year => 2013, :ampm => true, :default => 0.days.from_now.in_time_zone("Eastern Time (US & Canada)"), :minute_step => 30 %>
+	<%= f.datetime_select :end_at, :start_year => 2013, :ampm => true, :default => 2.hour.from_now.in_time_zone, :minute_step => 30 %>
 	<br>
 	<%= f.label "Select Game(s) for this Availability Time Slot:" %>
 	<%= f.collection_select :game_ids, Game.all, :id, :name, {}, {multiple: "multiple"} %>
