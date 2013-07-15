@@ -14,11 +14,11 @@
 #
 
 class Player < ActiveRecord::Base
-	has_many :availabilities
+	has_many :availabilities, dependent: :destroy
 	has_and_belongs_to_many :events
-	has_many :friendships
+	has_many :friendships, dependent: :destroy
 	has_many :friends, through: :friendships
-	has_many :mutual_friendships, class_name: "Friendship", foreign_key: "friend_id"
+	has_many :mutual_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
 	has_many :mutual_friends, through: :mutual_friendships, source: :player
 		
 	has_secure_password

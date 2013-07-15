@@ -24,4 +24,16 @@ GameTime::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+  
+  pw = File.open('./lib/dev_mailer_info.txt','r').readline.chomp
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+	address:              'smtp.gmail.com',
+	port:                 587,
+	domain:               'gmail.com',
+	user_name:            'gametime.notifications',
+	password:             pw,
+	authentication:       'plain',
+	enable_starttls_auto: true  }
 end

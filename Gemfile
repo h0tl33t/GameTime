@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'event-calendar', :require => 'event_calendar'
+gem 'whenever'
 
 group :development, :test do
 	gem 'sqlite3'

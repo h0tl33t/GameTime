@@ -1,0 +1,6 @@
+Enough players have joined the GameTime event "<%= @event.name %>".  It's on!
+
+The following players are scheduled to play <%= @event.game.name %> from <%= @event.start_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)")%> to <%= @event.end_at.in_time_zone.strftime("%l:%M%p (%m/%d/%y)")%>:
+<% @event.players.each do |p| %>
+- <%= p.alias %>
+<% end %>

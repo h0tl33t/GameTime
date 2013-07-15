@@ -7,6 +7,8 @@ class FriendshipsController < ApplicationController
 				mutual_friend = @friendship.friend
 				@friendship.update_attributes(pending: false, mutual: true)
 				mutual_friend.friendships.select{|friendship| friendship.friend = current_player}.first.update_attributes(pending: false, mutual: true)
+			else
+				GametimeMailer.pending_friend_request(@friendship.friend, current_player).deliver
 			end
 			flash[:notice] = 'Added friend.'
 			redirect_to current_player

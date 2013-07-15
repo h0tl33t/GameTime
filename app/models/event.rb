@@ -25,6 +25,7 @@ class Event < ActiveRecord::Base
 	scope :ends_after, lambda { |event| where('end_at > ? and game_id = ?', event.end_at, event.game_id) }
 	scope :start_overlap, lambda { |event| where('start_at >= ? and start_at <= ? and game_id = ?', event.start_at, event.end_at, event.game_id) }
 	scope :end_overlap, lambda { |event| where('end_at >= ? and game_id = ?', event.start_at, event.game_id) }
+	scope :starting_today, lambda { where('start_at >= ? and start_at <= ?', Time.zone.now.at_beginning_of_day, Time.zone.now.end_of_day) }
 	
 	def duration
 		self.end_at - self.start_at
@@ -134,6 +135,10 @@ class Event < ActiveRecord::Base
 	end
 	
 	class << self
+		def reminder
+			Event.starting_today.each {|e| GametimeMailer.gametime_event_reminder(e).deliver }
+		end
+		
 		def create_from(event_hash) #event_hash contains :availability (Availability), :game (Game), :players (array of Player)
 			new_event = Event.new
 			new_event.name = "#{event_hash[:game].name} Event"

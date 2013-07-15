@@ -1,0 +1,6 @@
+<%= @player.name %>,
+
+You have a pending friend request from <%= "#{@friend.name} (#{@friend.alias})" %>.
+
+Head on over to your GameTime profile to accept or deny this request:
+<%= player_url(@player) %>

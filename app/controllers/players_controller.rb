@@ -21,6 +21,7 @@ class PlayersController < ApplicationController
 		@title = 'Create Player'
 		@player = Player.new(player_params)
 		if @player.save
+			GametimeMailer.welcome_new_player(@player).deliver
 			sign_in(@player)
 			flash[:success] = 'Welcome to GameTime!'
 			redirect_to @player
