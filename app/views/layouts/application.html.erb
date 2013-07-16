@@ -21,8 +21,4 @@
 		var timezone = jstz.determine();
 		document.cookie = 'time_zone='+timezone.name()+';';
 	</script>
-	<div class="well">
-		<%= "Time Zone: #{cookies["time_zone"]}" %>
-		<%= "Your local time is #{Time.now.in_time_zone(cookies["time_zone"])}" %>
-	</div>
 </html>
