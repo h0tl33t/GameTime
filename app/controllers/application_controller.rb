@@ -9,5 +9,6 @@ class ApplicationController < ActionController::Base
   private
 	def set_timezone
 		Time.zone = cookies["time_zone"]
+		@player_time_zone = cookies["time_zone"]
 	end
 end
