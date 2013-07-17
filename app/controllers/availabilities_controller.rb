@@ -51,7 +51,6 @@ class AvailabilitiesController < ApplicationController
     end
 	
 	def verify_friends
-		
 		unless @availability.player.mutual_friends_with?(current_player) or @availability.player == current_player
 			redirect_to root_path, notice: "You must be mutual friends to see another player's availabilities."
 		end

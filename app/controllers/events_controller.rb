@@ -49,14 +49,14 @@ class EventsController < ApplicationController
     end
   end
   
-  	def create_from_join
-		availability = Availability.find(params[:availability])
-		players = params[:players].map{|player_id| Player.find(player_id)}
-		@event = Event.create(name: 'Join Up Event Test', start_at: availability.start_at, end_at: availability.end_at, game: availability.games.first)
-		@event.players = players
-		GametimeMailer.gametime_event_created(@event).deliver
-		redirect_to events_path, notice: 'Successfully joined up and started a GameTime Event!'
-	end
+  def create_from_join
+	availability = Availability.find(params[:availability])
+	players = params[:players].map{|player_id| Player.find(player_id)}
+	@event = Event.create(name: 'Join Up Event Test', start_at: availability.start_at, end_at: availability.end_at, game: availability.games.first)
+	@event.players = players
+	GametimeMailer.gametime_event_created(@event).deliver
+	redirect_to events_path, notice: 'Successfully joined up and started a GameTime Event!'
+  end
 
   private
     def set_event
