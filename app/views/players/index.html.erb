@@ -3,11 +3,9 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Name</th>
       <th>Alias</th>
-	  <% if current_player.admin? %>
-		<th>Email</th>
-	  <% end %>
+      <th>Name</th>
+	  <th>Email</th>
 	  <th></th>
     </tr>
   </thead>
@@ -15,14 +13,17 @@
   <tbody>
     <% @players.each do |player| %>
     <tr>
-      <td><%= player.name %></td>
       <td><%= player.alias %></td>
-	  <% if current_player.admin? %>
+	  <% if current_player.admin? or current_player.mutual_friends_with?(player)%>
+		<td><%= player.name %></td>
 		<td><%= player.email %></td>
+	  <% else %>
+		<td></td>
+		<td></td>
 	  <% end %>
 	  <td>
 		<% if current_player.friends.include?(player) %>
-			<%= link_to "Remove Friend", current_player.friendships.select{|friendship| friendship.friend = player}.first, method: :delete, data: {confirm: "Are you sure you want to remove this friend?"}, :title => "Remove Friend", class: "btn btn-small"%>
+			<%= link_to "Remove Friend", Friendship.between(current_player, player).first, method: :delete, data: {confirm: "Are you sure you want to remove this friend?"}, :title => "Remove Friend", class: "btn btn-small"%>
 		<% elsif current_player == player %>
 		<% else %>
 			<%= link_to "Add Friend", friendships_path(:friend_id => player), method: :post, class: "btn btn-small"%>

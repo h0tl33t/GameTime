@@ -26,8 +26,8 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Name</th>
       <th>Alias</th>
+      <th>Name</th>
 	  <th>Email</th>
 	  <th>Friendship Status </th>
 	  <th></th>
@@ -37,9 +37,9 @@
   <tbody>
 	<% @player.friendships.each do |friendship| %>
     <tr>
-      <td><%= friendship.friend.name %></td>
-      <td><%= friendship.friend.alias %></td>
-	  <td><%= friendship.friend.email %></td>
+	  <td><%= friendship.friend.alias %></td>
+      <td><%= friendship.pending? ? "[Hidden while pending.]" : friendship.friend.name %></td>
+	  <td><%= friendship.pending? ? "[Hidden while pending.]" : friendship.friend.email %></td>
 	  <td>
 		<% if friendship.mutual %>
 			Mutual
@@ -57,8 +57,8 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Name</th>
       <th>Alias</th>
+      <th>Name</th>
 	  <th>Email</th>
 	  <th></th>
     </tr>
@@ -68,8 +68,8 @@
 	<% @player.mutual_friendships.pending.each do |pending_friendship| %>
     <tr>
 	  <% if pending_friendship.player %>
+	  <td><%= pending_friendship.player.alias %></td>
       <td><%= pending_friendship.player.name %></td>
-      <td><%= pending_friendship.player.alias %></td>
 	  <td><%= pending_friendship.player.email %></td>
 	  <td><%= link_to "Accept", friendships_path(:friend_id => pending_friendship.player), method: :post, class: "btn btn-small" %>
 		  <%= link_to "Deny", pending_friendship,

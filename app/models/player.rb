@@ -34,7 +34,7 @@ class Player < ActiveRecord::Base
 	validates :password_confirmation, presence: true
 	
 	def mutual_friends_with?(other)
-		self.friendships.mutual.select {|friendship| friendship.friend = other}.size > 0
+		Friendship.between(self, other).mutual.exists?
 	end
 	
 	private
