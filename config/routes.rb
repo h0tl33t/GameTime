@@ -23,7 +23,7 @@ GameTime::Application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
   
-  get '/join', to: 'events#create_from_join'
+  get '/join', to: 'events#create'
   get '/signup', to: 'players#new'
   get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'
