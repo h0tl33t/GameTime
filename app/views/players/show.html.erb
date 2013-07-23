@@ -5,9 +5,10 @@
     <tr>
       <th>Name</th>
       <th>Alias</th>
-	  <th>Email</th>
-	  <th></th>
-	  <th></th>
+			<th>Email</th>
+			<th>Preferred Game</th>
+			<th></th>
+			<th></th>
     </tr>
   </thead>
 
@@ -15,9 +16,10 @@
     <tr>
       <td><%= @player.name %></td>
       <td><%= @player.alias %></td>
-	  <td><%= @player.email %></td>
-	  <td><%= link_to "Edit", edit_player_path(@player) %></td>
-	  <td><%= link_to "Delete", @player, :method => :delete, data: {confirm: "Are you sure you want to delete?"}, :title => "Delete #{@player.name}" %></td>
+			<td><%= @player.email %></td>
+			<td><%= @player.game.name %></td>
+			<td><%= link_to "Edit", edit_player_path(@player) %></td>
+			<td><%= link_to "Delete", @player, :method => :delete, data: {confirm: "Are you sure you want to delete?"}, :title => "Delete #{@player.name}" %></td>
     </tr>
   </tbody>
 </table>

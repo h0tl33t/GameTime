@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130607133019) do
+ActiveRecord::Schema.define(version: 20130722140805) do
 
   create_table "availabilities", force: true do |t|
     t.datetime "start_at"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20130607133019) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.integer  "game_id",         default: 1
   end
 
   add_index "players", ["email"], name: "index_players_on_email", unique: true

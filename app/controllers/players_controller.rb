@@ -32,6 +32,7 @@ class PlayersController < ApplicationController
 	
 	def update
 		if @player.update_attributes(player_params)
+			sign_in(@player) #Updating password modifies the remember_token, requiring a re-authentication/sign-in.  Automating so it's invisible to the user as they were already logged in.
 			redirect_to @player, :flash => { :success => "Player info updated." }
 		else
 			@title = "Edit Player Info"
@@ -68,6 +69,6 @@ class PlayersController < ApplicationController
 		end
 		
 		def player_params
-			params.require(:player).permit(:name, :email, :alias, :password, :password_confirmation)
+			params.require(:player).permit(:name, :email, :alias, :game_id, :password, :password_confirmation)
 		end
 end

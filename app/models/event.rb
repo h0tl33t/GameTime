@@ -134,6 +134,24 @@ class Event < ActiveRecord::Base
 		end
 	end
 	
+	def choose_game(games) #Pick the game for the event based on the players' preferred game(s) if applicable (exist in the availability's game list)
+		valid_games = []
+		self.players.each {|player| valid_games << player.game if games.include?(player.game)}
+		unless valid_games.empty?
+			count = valid_games.inject(Hash.new(0)) do |hash, game|
+				hash[game] += 1
+				hash
+			end
+			self.update_attribute(:game, count.sort_by {|key, val| val}.last.first) #Where the result of sorting count is an array of array pairs as [[game, count], [game, count]]
+		else
+			self.update_attribute(:game, games.first) #If the player's preferred games are not in the availability list, grab the first game from the availability.
+		end
+	end
+	
+	def generate_name
+		self.update_attribute(:name, "#{self.game.name} Event")
+	end
+	
 	class << self
 		def reminder
 			Event.starting_today.each {|e| GametimeMailer.gametime_event_reminder(e).deliver }

@@ -1,9 +1,10 @@
 <h1>Edit Player</h1>
 
-<%= form_for(@player) do |f| %>
+<%= form_for @player do |f| %>
   <%= render "shared/error_messages", :object => f.object %>
   <%= render "fields", :f => f %>
+	</br>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: "btn" %>
   </div>
 <% end %>

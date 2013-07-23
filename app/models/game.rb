@@ -13,6 +13,7 @@
 class Game < ActiveRecord::Base
 	has_and_belongs_to_many :availabilities
 	has_many :events
+	has_many :players
 
 	validates :name, presence: true
 	validates :platform, presence: true
